@@ -1,9 +1,10 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/company
+    url: jdbc:mysql://spring-boot-mysql:3306/company
+#    url: jdbc:mysql://localhost:3306/company
     username: root
-    password:
+    password: dev
   jpa:
     show-sql: true
     hibernate:
