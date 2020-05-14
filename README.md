@@ -29,15 +29,15 @@
 
 ## Attention
 - Before moving to deployment to docker we need to do following steps,
-  - The mysql url should in application.yml file should point to the "docker" mysql host name which we mention using --name
+  - The mysql url should in `application.yml` file should point to the "docker" mysql host name which we mention using --name
   - It is always good to have a password to mysql. So give password if not present in application.yml file
   - Two containers within the docker cannot communicate without being on the same network. So create a network say, `$ docker network create spring-app-mysql-ntw`
 
 ## Testing Docker Image
 - `$ docker network create spring-app-mysql-ntw`
-- `$ docker run --name spring-boot-mysql --network spring-app-mysql-ntw -e MYSQL_ROOT_PASSWORD=dev -e MYSQL_DATABASE=company -d mysql:5.6`
+- `$ docker run --name database --network spring-app-mysql-ntw -e MYSQL_ROOT_PASSWORD=dev -e MYSQL_DATABASE=company -d mysql:5.6`
   ### Here,
-  - `spring-boot-mysql` is the name of the container .. this should be mentioned in the mysql url of spring-boot application.yml file
+  - `database` is the name of the container .. this should be mentioned in the mysql url of spring-boot `application.yml` file
   - `spring-app-mysql-ntw` is also very imp bcoz without this sping-appt cannot communicate with the mysql container
 - Build: `$ cd to project && docker build -t spring-boot-mysql-app .`
 - Run: `$ docker run --name spring-boot-jpa-app --network spring-app-mysql-ntw -d -p 8200:8200 spring-boot-mysql-app`
